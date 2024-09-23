@@ -1,0 +1,58 @@
+﻿@model Exosky.Controllers.RegistrationController.UserInput
+
+@{
+    ViewData["Title"] = "Registration";
+}
+
+<h2>Register</h2>
+
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["message"]
+    </div>
+}
+
+<form asp-action="Index" method="post">
+    <div class="form-group">
+        <label asp-for="UserFName">First Name</label>
+        <input asp-for="UserFName" class="form-control" />
+        <span asp-validation-for="UserFName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UserLName">Last Name</label>
+        <input asp-for="UserLName" class="form-control" />
+        <span asp-validation-for="UserLName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="form-control" type="email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password">Password</label>
+        <input asp-for="Password" class="form-control" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BarthDay">Birth Date</label>
+        <input asp-for="BarthDay" class="form-control" type="date" />
+        <span asp-validation-for="BarthDay" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+
+    <p>
+        Already have an account? <a asp-controller="Login" asp-action="Index">Login here</a>.
+    </p>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
