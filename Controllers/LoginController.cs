@@ -85,5 +85,7 @@ namespace Exosky.Controllers
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
+       
+
     }
 }
