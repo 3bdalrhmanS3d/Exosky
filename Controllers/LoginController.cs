@@ -45,6 +45,7 @@ namespace Exosky.Controllers
             if (Xuser != null && VerifyPassword(input.userPassword, Xuser.Password))
             {
                 HttpContext.Session.SetString("UserId", Xuser.Id.ToString() );
+
                 
                 return RedirectToAction("Index", "Home");
             }

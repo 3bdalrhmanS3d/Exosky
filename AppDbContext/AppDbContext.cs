@@ -14,7 +14,7 @@ namespace Exosky.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseSqlServer("Data Source=LAPTOP-3HFKTLSG\\SQL2022;Integrated Security=True; Database=ExoskyAPI;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-QLS20Q3;Initial Catalog=ExoskyAPI;Integrated Security=True;Trust Server Certificate=True");
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -26,5 +26,6 @@ namespace Exosky.Data
         public DbSet<SharedSkyMap> SharedSkyMaps { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Like> Likes { get; set; }
+        public DbSet<ChatMessage> ChatMessages { get; set; }
     }
 }

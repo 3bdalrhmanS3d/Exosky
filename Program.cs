@@ -1,4 +1,6 @@
 using Exosky.Data;
+using Exosky.Hubs;
+using Exosky.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Exosky
@@ -13,6 +15,14 @@ namespace Exosky
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSignalR();
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30); // Set session timeout duration
+                options.Cookie.HttpOnly = true; // Make the session cookie accessible only to the server
+                options.Cookie.IsEssential = true; // Ensure the cookie is always sent
+            });
+            builder.Services.AddScoped<IChatRepository, ChatRepository>();
 
             var app = builder.Build();
 
@@ -28,12 +38,15 @@ namespace Exosky
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.MapHub<ChatHub>("/chatHub");
 
             app.Run();
         }
