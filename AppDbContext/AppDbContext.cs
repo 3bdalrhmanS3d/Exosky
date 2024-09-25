@@ -13,14 +13,15 @@ namespace Exosky.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-QLS20Q3;Initial Catalog=ExoskyAPI;Integrated Security=True;Trust Server Certificate=True");
+            optionsBuilder.UseSqlServer("Data Source=LAPTOP-3HFKTLSG\\SQL2022;Integrated Security=True; Database=ExoskyAPI;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            //optionsBuilder.UseSqlServer("Data Source=DESKTOP-QLS20Q3;Initial Catalog=ExoskyAPI;Integrated Security=True;Trust Server Certificate=True");
             base.OnConfiguring(optionsBuilder);
         }
 
         public DbSet<Exoplanet> Exoplanets { get; set; }
         public DbSet<Star> Stars { get; set; }
         public DbSet<SkyMap> SkyMaps { get; set; }
+        public DbSet<MainStar> MainStars { get; set; }
         public DbSet<Constellation> Constellations { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<SharedSkyMap> SharedSkyMaps { get; set; }
